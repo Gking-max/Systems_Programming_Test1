@@ -118,3 +118,16 @@ VALUES
     ((SELECT user_id FROM users WHERE username = 'john_doe'), 'CS101 Lecture', 'Introduction to variables', 'class', 'Room 201', NOW() + INTERVAL '1 day', NOW() + INTERVAL '1 day' + INTERVAL '2 hours'),
     ((SELECT user_id FROM users WHERE username = 'john_doe'), 'Math Midterm', 'Chapters 1-5', 'exam', 'Room 105', NOW() + INTERVAL '7 days', NOW() + INTERVAL '7 days' + INTERVAL '3 hours')
 ON CONFLICT DO NOTHING;
+
+-- Drop junction tables first
+DROP TABLE IF EXISTS event_courses;
+
+-- Drop tables with foreign keys to others
+DROP TABLE IF EXISTS study_logs;
+DROP TABLE IF EXISTS grades;
+DROP TABLE IF EXISTS todos;
+DROP TABLE IF EXISTS events;
+DROP TABLE IF EXISTS courses;
+
+-- Drop the parent table last
+DROP TABLE IF EXISTS users;
